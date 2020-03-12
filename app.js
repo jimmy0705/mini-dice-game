@@ -33,21 +33,54 @@ document.querySelector('.btn-roll').addEventListener('click',()=>{
 
 
     }else{
+        nextPlayer();
        
-        (activePlayer === 0) ? activePlayer=1 : activePlayer=0;
-        roundScore = 0;
+    //     (activePlayer === 0) ? activePlayer=1 : activePlayer=0;
+    //     roundScore = 0;
 
-       document.getElementById('current-0').textContent = "0";
-       document.getElementById('current-1').textContent = "0";
-       document.querySelector('.player-0-panel').classList.toggle('active');
-       document.querySelector('.player-1-panel').classList.toggle('active');
+    //    document.getElementById('current-0').textContent = "0";
+    //    document.getElementById('current-1').textContent = "0";
+    //    document.querySelector('.player-0-panel').classList.toggle('active');
+    //    document.querySelector('.player-1-panel').classList.toggle('active');
+
+    //    document.querySelector('.dice').style.display="none";
 
 
     }
 
 })
 
-console.log(activePlayer);
+//console.log(activePlayer);
+
+document.querySelector('.btn-hold').addEventListener('click',()=>{
+    //alert("hold button clicked");
+    scores[activePlayer] += roundScore;
+    console.log(scores);
+    document.querySelector('#score-'+activePlayer).textContent=scores[activePlayer];
+   
+    if(scores[activePlayer] >= 100){
+        document.querySelector('#name-'+activePlayer).textContent = "Winner :)";
+        document.querySelector('.dice').style.display="none";
+    }
+
+    nextPlayer();
+})
+
+
+
+function nextPlayer(){
+
+    (activePlayer === 0) ? activePlayer=1 : activePlayer=0;
+    roundScore = 0;
+
+   document.getElementById('current-0').textContent = "0";
+   document.getElementById('current-1').textContent = "0";
+   document.querySelector('.player-0-panel').classList.toggle('active');
+   document.querySelector('.player-1-panel').classList.toggle('active');
+
+   document.querySelector('.dice').style.display="none";
+
+}
 
 
 
